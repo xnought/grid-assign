@@ -72,22 +72,22 @@ const computeBestAssignments = (
 };
 
 const assignToGrids = ({
-	assignees,
-	pointsToAssign,
+	assignTo,
+	points,
 	distanceMetric = normSquared,
 }: {
-	assignees: point[];
-	pointsToAssign: point[];
+	assignTo: point[];
+	points: point[];
 	distanceMetric?: metricFunc;
 }): number[] => {
-	if (assignees.length > pointsToAssign.length) {
+	if (assignTo.length > points.length) {
 		throw Error("there cant be leftover things that we never assigned.");
 	}
-	const cost = createCostMatrix(assignees, pointsToAssign, distanceMetric);
+	const cost = createCostMatrix(assignTo, points, distanceMetric);
 	const balancedCost = balanceMatrix(cost);
 	const gridAssignments = computeBestAssignments(
 		balancedCost,
-		assignees.length
+		assignTo.length
 	);
 	return gridAssignments;
 };

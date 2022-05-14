@@ -41,8 +41,8 @@ const peopleCallingTaxiLocations = [
 ];
 
 const assignments = linearAssignment.assign({
-	assignees: taxiDriverLocations,
-	pointsToAssign: peopleCallingTaxiLocations,
+	points: peopleCallingTaxiLocations,
+	assignTo: taxiDriverLocations,
 });
 
 /* 

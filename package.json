@@ -1,7 +1,8 @@
 {
-  "name": "grid-assign-js",
+  "name": "linear-assignment-js",
   "version": "1.0.0",
-  "main": "build",
+  "main": "dist/",
+
   "scripts": {
     "dev": "nodemon src/index.ts",
     "build":"node build/index.js",

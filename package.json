@@ -5,7 +5,7 @@
 
   "scripts": {
     "dev": "nodemon src/index.ts",
-    "build":"node build/index.js",
+    "build":"node dist/index.js",
     "prebuild": "tsc"
   },
   "repository": "git@github.com:xnought/grid-assign-js.git",

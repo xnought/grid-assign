@@ -8,7 +8,7 @@
     "build":"node dist/index.js",
     "prebuild": "tsc"
   },
-  "repository": "git@github.com:xnought/grid-assign-js.git",
+  "repository": "git@github.com:xnought/linear-assignment-js.git",
   "author": "xnought <bertuccd@oregonstate.edu>",
   "license": "MIT",
   "devDependencies": {

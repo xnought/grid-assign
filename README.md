@@ -22,8 +22,8 @@ npm install linear-assignment-js
 Then you can use it by importing the default function
 
 ```javascript
-import optimalLinearAssignment from "linear-assignment-js";
-// const optimalLinearAssignment = require("linear-assignment-js").default
+import * as linearAssignment from "linear-assignment-js";
+// const linearAssignment = require("linear-assignment-js");
 ```
 
 Then you can interface with the function like this
@@ -40,15 +40,15 @@ const peopleCallingTaxiLocations = [
 	[-1, 1],
 ];
 
-const assignments = optimalLinearAssignment({
+const assignments = linearAssignment.assign({
 	assignees: taxiDriverLocations,
 	pointsToAssign: peopleCallingTaxiLocations,
 });
 
 /* 
-	output interpretation:
-		assignment =  [ 1, 2 ]
-		taxi driver 0 was assigned to person 1 at location (1,0)
-		taxi driver 1 was assigned to person 2 at location (1,1)
+output interpretation:
+	assignment =  [ 1, 2 ]
+	taxi driver 0 was assigned to person 1 at location (1,0)
+	taxi driver 1 was assigned to person 2 at location (1,1)
 */
 ```

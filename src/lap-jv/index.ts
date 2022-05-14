@@ -1,28 +1,39 @@
 import { lap } from "./lap";
 
-type point2D = [number, number];
-type metricFunc = (p1: point2D, p2: point2D) => number;
+type point = number[];
+type metricFunc = (p1: point, p2: point) => number;
 type costMatrix = number[][];
 
-const normSquared = (p1: point2D, p2: point2D): number => {
+const normSquared = (p1: point, p2: point): number => {
 	// no need to sqrt because comparing relative and monotonic
-	return (p1[0] - p2[0]) ** 2 + (p1[1] - p2[1]) ** 2;
+	let norm = 0;
+	for (let i = 0; i < p1.length; i++) {
+		norm += (p1[i] - p2[i]) ** 2;
+	}
+	return norm;
 };
 
-const repeater = (length: number, fill = 0) => new Array(length).fill(fill);
+const rowPadding = (length: number, fillValue?: number) => {
+	const blankArray = new Array(length);
+	if (fillValue !== undefined) {
+		blankArray.fill(fillValue);
+	}
+	return blankArray;
+};
 
 const balanceMatrix = (dists: number[][], fill: number = 0) => {
 	const squareShape = dists[0].length;
 	let merged = [];
 	for (let i = dists.length; i < squareShape; i++) {
-		merged.push(repeater(squareShape, fill));
+		const blankRow = rowPadding(squareShape);
+		merged.push(blankRow);
 	}
 	return dists.concat(merged);
 };
 
 const createCostMatrix = (
-	grids: point2D[],
-	points: point2D[],
+	grids: point[],
+	points: point[],
 	metric: metricFunc = normSquared
 ): costMatrix => {
 	let dists = [];
@@ -60,19 +71,23 @@ const computeBestAssignments = (
 	return rowAssignments;
 };
 
-const assignToGrids = (
-	assignTo: point2D[],
-	points: point2D[],
-	distanceMetric: metricFunc = normSquared
-): number[] => {
-	if (assignTo.length > points.length) {
+const assignToGrids = ({
+	assignees,
+	pointsToAssign,
+	distanceMetric = normSquared,
+}: {
+	assignees: point[];
+	pointsToAssign: point[];
+	distanceMetric?: metricFunc;
+}): number[] => {
+	if (assignees.length > pointsToAssign.length) {
 		throw Error("there cant be leftover things that we never assigned.");
 	}
-	const cost = createCostMatrix(assignTo, points, distanceMetric);
+	const cost = createCostMatrix(assignees, pointsToAssign, distanceMetric);
 	const balancedCost = balanceMatrix(cost);
 	const gridAssignments = computeBestAssignments(
 		balancedCost,
-		assignTo.length
+		assignees.length
 	);
 	return gridAssignments;
 };

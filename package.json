@@ -1,8 +1,12 @@
 {
   "name": "linear-assignment-js",
-  "version": "1.0.01",
+  "version": "1.0.3",
   "main": "dist/",
-
+  "files": [
+    "dist",
+    "LICENSE",
+    "README.md"
+  ],
   "scripts": {
     "dev": "nodemon src/index.ts",
     "build":"node dist/index.js",

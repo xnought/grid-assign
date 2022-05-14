@@ -23,7 +23,7 @@ Then you can use it by importing the default function
 
 ```javascript
 import optimalLinearAssignment from "linear-assignment-js";
-// const optimalLinearAssignment = require("linear-assignment-js")
+// const optimalLinearAssignment = require("linear-assignment-js").default
 ```
 
 Then you can interface with the function like this

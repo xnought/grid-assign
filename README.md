@@ -3,7 +3,7 @@
 This repository is a simple and general API to use the Linear Assignment Problem Algorithm.
 
 It uses the LAP-JV implemented from [here](https://github.com/Fil/lap-jv). These are almost the same, but
-I've added the capabilities to also account for an unbalanced cost matrix.
+I've added the capabilities to also account for an unbalanced cost matrix. For a visual example, check out the problem adapted to show t-SNE embeddings in a square grid on [observable: t-SNE Grid live](https://observablehq.com/@xnought/t-sne-grid-live).
 
 In the example above, they assign n points to n assignees. For example, if I wanted to assign 10 taxi drivers to 10 people on the map. I could compute the distance of each taxi driver to each person (n by n matrix where rows are taxi drivers and the column is the distance to each person). Then I could use the Linear assignment problem to compute the optimal assignments such that we minimize the total sum of distances to the assignments.
 

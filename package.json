@@ -14,7 +14,7 @@
     "test": "jest",
     "all": "yarn test && yarn build"
   },
-  "repository": "git@github.com:xnought/linear-assignment-js.git",
+  "repository": "git@github.com:xnought/grid-assign.git",
   "author": "xnought <bertuccd@oregonstate.edu>",
   "license": "MIT",
   "devDependencies": {

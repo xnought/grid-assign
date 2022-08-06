@@ -1,4 +1,4 @@
-# Linear Assignment
+# Grid Assignment API and Linear Assignment API
 
 This repository is a simple and general API to use the Linear Assignment Problem Algorithm.
 

@@ -16,8 +16,7 @@ jobs:
               with:
                   node-version: 16
             - run: npm ci
-            - run: npm test
-            - run: npm build
+            - run: npm run test
 
     publish-npm:
         needs: build
@@ -28,6 +27,8 @@ jobs:
               with:
                   node-version: 16
                   registry-url: https://www.npmjs.com/package/grid-assign
+            - run: npm ci
+            - run: npm run build
             - run: npm publish
               env:
                   NODE_AUTH_TOKEN: ${{secrets.npm_token}}

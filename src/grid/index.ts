@@ -52,6 +52,7 @@ interface IGridAssignment {
 	screenY?: number;
 	numColumns: number;
 	numRows: number;
+	anchorMiddleGrid?: boolean;
 }
 export function autoGridAssignment({
 	points,
@@ -61,6 +62,7 @@ export function autoGridAssignment({
 	screenY = 0,
 	numColumns,
 	numRows,
+	anchorMiddleGrid = false,
 }: IGridAssignment) {
 	// compute the grid on top of the points
 	const { gridWidth, gridHeight, gridPoints } = generateGrid({
@@ -69,7 +71,7 @@ export function autoGridAssignment({
 		numColumns,
 		numRows,
 		translate: [screenX, screenY],
-		centerPoint: true,
+		centerPoint: anchorMiddleGrid,
 	});
 
 	// compute min max of the x and y directions of the points

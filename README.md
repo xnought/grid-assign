@@ -1,6 +1,6 @@
-# Grid Assignment API and Linear Assignment API
+# Grid Assignment
 
-This repository is a simple and general API to use the Linear Assignment Problem Algorithm.
+This repository is a simple and general API to use the Linear Assignment Problem Algorithm. It also has a much higher level grid assignment API that automatically generates the grids for the screen and assigns the points to the grids.
 
 It uses the LAP-JV implemented from [here](https://github.com/Fil/lap-jv). These are almost the same, but
 I've added the capabilities to also account for an unbalanced cost matrix. For a visual example, check out the problem adapted to show t-SNE embeddings in a square grid on [observable: t-SNE Grid live](https://observablehq.com/@xnought/t-sne-grid-live).
@@ -13,20 +13,54 @@ This package will take in this non-square matrix and return the 5 best assignmen
 
 ## Usage
 
-Install via [npm](https://www.npmjs.com/package/linear-assignment-js) like this:
+Install via [npm](https://www.npmjs.com/package/grid-assign-js) like this:
 
 ```bash
-npm install linear-assignment-js
+npm install grid-assign-js
 ```
-
-Then you can use it by importing the default function
 
 ```javascript
-import * as linearAssignment from "linear-assignment-js";
-// const linearAssignment = require("linear-assignment-js");
+import * as gridAssign from "grid-assign-js";
 ```
 
-Then you can interface with the function like this
+### Grid Assignment
+
+```javascript
+const pointsToAssign = [
+	[5, 4],
+	[1, 0],
+	[1, 1],
+	[-1, 1],
+];
+
+// get grid API
+const { grid } = gridAssign;
+
+// get grid assignments for a 2 by 2 grid
+// in a 500 by 500 pixels space
+const { assignments } = grid.autoGridAssignment({
+	points: pointsToAssign,
+	numColumns: 2,
+	numRows: 2,
+	screenWidth: 500, // 500 px
+	screenHeight: 500, // 500 px
+});
+
+/*
+	assignments = {
+		gridPoint: point;
+		gridWidth: number;
+		gridHeight: number;
+
+		assignedPoint: point;
+		assignedPointIndex: number;
+	}[]
+
+	yeah it's that easy
+*/
+```
+
+### Linear Assignment Problem
 
 ```javascript
 const taxiDriverLocations = [
@@ -40,15 +74,17 @@ const peopleCallingTaxiLocations = [
 	[-1, 1],
 ];
 
-const assignments = linearAssignment.assign({
+const assignments = gridAssign.assign({
 	points: peopleCallingTaxiLocations,
 	assignTo: taxiDriverLocations,
 });
 
 /* 
 output interpretation:
-	assignment =  [ 1, 2 ]
+	assignments =  [ 1, 2 ]
 	taxi driver 0 was assigned to person 1 at location (1,0)
 	taxi driver 1 was assigned to person 2 at location (1,1)
 */
 ```
+
+For more detail take a look at the types and the test examples :)

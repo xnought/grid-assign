@@ -11,18 +11,7 @@ on:
         types: [created]
 
 jobs:
-    test:
-        runs-on: ubuntu-latest
-        steps:
-            - uses: actions/checkout@v3
-            - uses: actions/setup-node@v3
-              with:
-                  node-version: 16
-            - run: npm ci
-            - run: npm run test
-
-    publish-npm:
-        needs: test
+    package:
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v3
@@ -31,7 +20,23 @@ jobs:
                   node-version: 16
                   registry-url: https://www.npmjs.com/package/grid-assign-js
             - run: npm ci
+            - run: npm run test
             - run: npm run build
             - run: npm publish
               env:
                   NODE_AUTH_TOKEN: ${{secrets.npm_token}}
+
+    # publish-npm:
+    #     needs: test
+    #     runs-on: ubuntu-latest
+    #     steps:
+    #         - uses: actions/checkout@v3
+    #         - uses: actions/setup-node@v3
+    #           with:
+    #               node-version: 16
+    #               registry-url: https://www.npmjs.com/package/grid-assign-js
+    #         - run: npm ci
+    #         - run: npm run build
+    #         - run: npm publish
+    #           env:
+    #               NODE_AUTH_TOKEN: ${{secrets.npm_token}}

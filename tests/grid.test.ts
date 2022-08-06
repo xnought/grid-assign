@@ -1,11 +1,11 @@
-import { autoGridAssignment, generateGrid } from "../src/grid";
+import { grid } from "../src";
 
 describe("grid API", () => {
 	it("implemented", () => {
-		expect(generateGrid).toBeDefined();
+		expect(grid.generateGrid).toBeDefined();
 	});
 	it("top-left anchored grids", () => {
-		const grids = generateGrid({
+		const grids = grid.generateGrid({
 			width: 100,
 			height: 100,
 			numRows: 2,
@@ -25,7 +25,7 @@ describe("grid API", () => {
 		expect(grids.gridPoints).toEqual(correctResult);
 	});
 	it("center anchored grids", () => {
-		const grids = generateGrid({
+		const grids = grid.generateGrid({
 			width: 100,
 			height: 100,
 			numRows: 2,

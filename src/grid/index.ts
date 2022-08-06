@@ -69,6 +69,7 @@ export function autoGridAssignment({
 		numColumns,
 		numRows,
 		translate: [screenX, screenY],
+		centerPoint: true,
 	});
 
 	// compute min max of the x and y directions of the points

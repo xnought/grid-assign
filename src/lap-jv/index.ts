@@ -1,8 +1,5 @@
 import { lap } from "./lap";
-
-type point = number[];
-type metricFunc = (p1: point, p2: point) => number;
-type costMatrix = number[][];
+import { costMatrix, metricFunc, point } from "../index";
 
 const normSquared = (p1: point, p2: point): number => {
 	// no need to sqrt because comparing relative and monotonic

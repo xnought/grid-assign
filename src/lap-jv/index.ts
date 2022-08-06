@@ -1,5 +1,8 @@
 import { lap } from "./lap";
-import { costMatrix, metricFunc, point } from "../index";
+
+export type point = number[];
+export type metricFunc = (p1: point, p2: point) => number;
+export type costMatrix = number[][];
 
 const normSquared = (p1: point, p2: point): number => {
 	// no need to sqrt because comparing relative and monotonic

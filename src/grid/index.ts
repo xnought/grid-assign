@@ -1,4 +1,4 @@
-import { point, assign } from "../index";
+import assign, { point } from "../lap-jv/";
 interface IGenerateGrid {
 	width: number;
 	height: number;
@@ -53,6 +53,7 @@ interface IGridAssignment {
 	numColumns: number;
 	numRows: number;
 	anchorMiddleGrid?: boolean;
+	returnPointConversion?: boolean;
 }
 export function autoGridAssignment({
 	points,

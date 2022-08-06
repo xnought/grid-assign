@@ -9,14 +9,19 @@
   ],
   "scripts": {
     "dev": "nodemon src/index.ts",
-    "build":"node dist/index.js",
-    "prebuild": "tsc"
+    "build": "node dist/index.js",
+    "prebuild": "tsc",
+    "test": "jest",
+    "all": "yarn test && yarn build"
   },
   "repository": "git@github.com:xnought/linear-assignment-js.git",
   "author": "xnought <bertuccd@oregonstate.edu>",
   "license": "MIT",
   "devDependencies": {
+    "@types/jest": "^28.1.6",
+    "jest": "^28.1.3",
     "nodemon": "^2.0.7",
+    "ts-jest": "^28.0.7",
     "ts-node": "^10.0.0",
     "typescript": "^4.3.4"
   }

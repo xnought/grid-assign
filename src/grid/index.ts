@@ -5,6 +5,7 @@ interface IGenerateGrid {
 	numRows: number;
 	numColumns: number;
 	translate?: point;
+	centerPoint?: boolean;
 }
 
 export function generateGrid({
@@ -12,17 +13,27 @@ export function generateGrid({
 	height,
 	numRows,
 	numColumns,
+	centerPoint = false,
 	translate = [0, 0],
 }: IGenerateGrid) {
 	const gridHeight = height / numRows;
 	const gridWidth = width / numColumns;
 	const gridPoints: point[] = [];
 
+	let centerTranslate = [0, 0];
+	if (centerPoint) {
+		centerTranslate[0] = gridWidth / 2;
+		centerTranslate[1] = gridHeight / 2;
+	}
+
 	let yPosition = translate[0];
 	for (let r = 0; r < numRows; r++) {
 		let xPosition = translate[1];
 		for (let c = 0; c < numColumns; c++) {
-			const gridPoint = [xPosition, yPosition];
+			const gridPoint = [
+				xPosition + centerTranslate[0],
+				yPosition + centerTranslate[1],
+			];
 			gridPoints.push(gridPoint);
 			xPosition += gridWidth;
 		}
